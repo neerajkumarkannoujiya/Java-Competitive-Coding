@@ -1,0 +1,34 @@
+class Solution {
+    
+    
+    public int maxProduct(String[] words) {
+        int l1 = words.length;
+        int state[]=new int[l1];
+        
+        for(int i=0;i<l1;i++){
+            state[i]=stateToString(words[i]);
+        }
+        int maxproduct = 0;
+        for(int i =0;i<l1;i++){
+            for(int j=i+1;j<l1;j++){
+                if((state[i] & state[j])==0){
+                    if(words[i].length() * words[j].length() >maxproduct){
+                        maxproduct = words[i].length() * words[j].length();
+                    }
+                }
+            }
+           
+        }
+         return maxproduct;
+        
+    }
+    
+private int stateToString(String s){
+    int s1=0;
+    for(char c: s.toCharArray()){
+        int index = c - 'a';
+        s1 |= 1 << (index);
+    }
+    return s1;
+    }
+}
