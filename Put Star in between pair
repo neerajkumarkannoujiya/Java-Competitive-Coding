@@ -1,0 +1,30 @@
+
+public class solution {
+
+	// Return the updated string
+    static String s1 = "";
+	public static String addStars(String s) {
+		// Write your code here
+        
+        if (s.length()<=1)
+            return s1 + s;
+        
+        s1 = s1 + s.charAt(0);
+        if (s.charAt(0)==s.charAt(1))
+            s1 = s1 + '*';
+        
+        String newstr = addStars(s.substring(1)); 
+        return newstr;
+	}
+}
+
+
+import java.util.Scanner;
+
+public class runner {
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		String input = s.nextLine();
+		System.out.println(solution.addStars(input));
+	}
+}
