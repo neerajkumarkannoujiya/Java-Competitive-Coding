@@ -1,0 +1,132 @@
+Problem Statement:
+
+
+You are given a binary string 'S' of size 'N'. You need to perform the following operations on 'S' in sequence.
+
+Replace all the even-length(>2) substrings containing only '8's with '00'. Replace all the even-length(>2) substrings containing only '1's with '11'.
+
+Replace all the odd-length(>1) substrings containing only '1's with '1'. Replace all the odd-length(>1) substrings containing only 'e's with "e".
+
+Return the final string formed by performing operations on 'S'.
+
+Note: Assume 0-based indexing.
+
+
+
+For Example:
+
+Let 'N' = 8, 'S! = 1110000 We will perform operation one, there exists a substring of even length containing only '0's i.e. 'S[36]'
+therefore 'S' will be converted to '11100'. There does not exist any even length substring having only '1's, therefore 'S' will remain 
+unchanged after operation 2. There exists a substring of odd length containing only '1's i.e. 's[0_2]' therefore 'S' will be converted
+to '100' after operation 3. There does not exist any odd length substring having only '0's, therefore 'S' will remain unchanged after operation 4.
+Therefore the final string will be '100'.
+
+Input Format:
+
+The first line contains an integer 'T', which denotes the number of test cases.
+
+For every test case: 
+
+The first line contains an integers denoting the size of the string 'S'.
+
+The second line contains a string 'S'
+
+Output Format:
+
+For each test case, return the final string formed after performing operations on 'S'
+
+Note:
+
+You don't need to print anything. Just implement the given function.
+
+
+Sample Input 1:
+
+New
+
+2
+
+11
+
+11100001111
+
+Sample Output 1:
+
+10011
+
+1
+
+Explanation Of Sample Input 1:
+
+First test case:
+
+We will perform operation one, there exists one substring of even length containing only '0's i.e. '5[3.6]' therefore 'S' will
+be converted to '111001111". There exists one substring of even length containing only '1's i.e. '5[7-10]' therefore 'S' will 
+be converted to '1110011' after operation 2. There exists a substring of odd length containing only '1's i.e. 's[82]' therefore 
+'S' will be converted to '10011' after operation 3. There does not exist any odd length substring having only 'e's, therefore 'S'
+will remain unchanged after operation 4. Therefore the final string will be '10011'. Second test case: The string will remain unchanged
+after performing all operations.
+
+
+
+
+*****************************************************************************************************************************************************
+
+
+
+public class Solution {
+    static String finalString(int n, String s) {
+        // Write your code here.
+        int one=0,zero=0;
+        String output="";
+        if(s.length()==1){
+            if(s.charAt(0)=='1'){
+                return "1";
+            }
+            if(s.charAt(0)=='0'){
+                return "0";
+            }
+        }
+        if(s.charAt(n-1)=='1'){
+            s=s+"0";
+        }else{
+            s=s+"1";
+        }
+        for(int i=0;i<n;i++){
+            if(s.charAt(i)=='1'){
+                one++;
+               
+                if(s.charAt(i+1)=='0' ){
+                    if(one>2 && one%2==0){
+                        output=output+"11";
+                    }else if(one>1 && one%2==1){
+                       output=output+"1" ;
+                    }else{
+                        for(int j=0;j<one;j++){
+                            output=output+'1';
+                        }
+                    }
+                    one=0;
+                }
+                
+            }else{
+                zero++;
+                if(s.charAt(i+1)=='1'){
+                    if(zero>2 && zero%2==0){
+                        output=output+"00";
+                    }else if(zero>1 && zero%2==1){
+                       output=output+"0" ;
+                    }else{
+                         for(int j=0;j<zero;j++){
+                            output=output+'0';
+                        }
+                    }
+                    zero=0;
+                }
+            }
+            
+        }
+      //  System.out.println(output);
+        return output;
+    }
+}
