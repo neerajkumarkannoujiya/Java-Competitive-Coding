@@ -24,6 +24,9 @@ public class Solution {
 
 
       *******************************  ANOTHER METHOD   *************************
+      
+      
+      
 public class Solution {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {      
        int lenA = 0;
