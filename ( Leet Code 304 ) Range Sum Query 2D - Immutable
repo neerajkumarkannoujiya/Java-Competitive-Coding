@@ -12,6 +12,7 @@ class NumMatrix {
                 matrix[i][j] += matrix[i-1][j];
             }
         }
+        
         this.matrix = matrix;
     }
     
